@@ -12,22 +12,41 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/",
+    "format": "prettier --write src/**/*.js"
   },
   "dependencies": {
-    "apollo-cache-inmemory": "^1.0.0",
-    "apollo-client": "^2.0.1",
-    "apollo-link-http": "^1.1.0",
-    "graphql": "^0.11.7",
-    "graphql-tag": "^2.5.0",
-    "react": "^16.0.0",
-    "react-apollo": "^2.0.0",
-    "react-dom": "^16.0.0",
+    "apollo-cache-inmemory": "^1.1.10",
+    "apollo-client": "^2.2.6",
+    "apollo-link-http": "^1.5.3",
+    "graphql": "^0.13.1",
+    "graphql-tag": "^2.8.0",
+    "react": "^16.2.0",
+    "react-apollo": "^2.1.0-rc.3",
+    "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "recompose": "^0.26.0"
   },
   "devDependencies": {
-    "react-scripts": "1.0.17"
+    "eslint": "^4.18.2",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.11.1",
+    "react-scripts": "^2.0.0-next.47d2d941"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
+  }
 }
