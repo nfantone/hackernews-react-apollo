@@ -8,7 +8,8 @@ const CreateLinkForm = ({
   url,
   setUrl,
   description,
-  setDescription
+  onDescriptionChange,
+  onURLChange
 }) => {
   return (
     <div>
@@ -16,19 +17,19 @@ const CreateLinkForm = ({
         <input
           className="mb2"
           value={description}
-          onChange={e => setDescription(e.target.value)}
+          onChange={onDescriptionChange}
           type="text"
           placeholder="A description for the link"
         />
         <input
           className="mb2"
           value={url}
-          onChange={e => setUrl(e.target.value)}
+          onChange={onURLChange}
           type="text"
           placeholder="The URL for the link"
         />
       </div>
-      <button onClick={() => createLink(url, description)}>Submit</button>
+      <button onClick={createLink}>Submit</button>
     </div>
   );
 };
@@ -45,7 +46,7 @@ const withMutation = graphql(gql`
 `);
 
 const allowLinkCreation = compose(
-  withState('url', 'setUrl', ''),
+  withState('url', 'setURL', ''),
   withState('description', 'setDescription', '')
 );
 
@@ -53,8 +54,11 @@ const enhance = compose(
   withMutation,
   allowLinkCreation,
   withHandlers({
-    createLink: ({ mutate, history }) => {
-      return async (url, description) => {
+    onDescriptionChange: ({ setDescription }) => e =>
+      setDescription(e.currentTarget.value),
+    onURLChange: ({ setURL }) => e => setURL(e.target.value),
+    createLink: ({ mutate, history, url, description }) => {
+      return async () => {
         await mutate({ variables: { description, url } });
         history.push('/');
       };
