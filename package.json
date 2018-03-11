@@ -26,10 +26,11 @@
     "react-apollo": "^2.1.0-rc.3",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "recompose": "^0.26.0"
+    "recompose": "^0.26.0",
+    "tachyons": "^4.9.1"
   },
   "devDependencies": {
-    "eslint": "^4.18.2",
+    "eslint": "4.15.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
     "prettier": "^1.11.1",
