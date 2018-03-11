@@ -7,12 +7,12 @@ import LinkList from './link-list';
 
 const App = () => {
   return (
-    <div className='center w85'>
+    <div className="center w85">
       <Header />
-      <div className='ph3 pv1 background-gray'>
+      <div className="ph3 pv1 background-gray">
         <Switch>
-          <Route exact path='/' component={LinkList}/>
-          <Route exact path='/create' component={CreateLinkForm}/>
+          <Route exact path="/" component={LinkList} />
+          <Route exact path="/create" component={CreateLinkForm} />
         </Switch>
       </div>
     </div>

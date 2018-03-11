@@ -7,33 +7,28 @@ import gql from 'graphql-tag';
 const LinkList = ({ links }) => {
   return (
     <div>
-      {links.map((link) => (
+      {links.map(link => (
         <Link key={link.id} description={link.description} url={link.url} />
       ))}
     </div>
-  )
+  );
 };
 
-const Loading = () => (
-  <div>Loading...</div>
-);
+const Loading = () => <div>Loading...</div>;
 
 const Error = ({ data }) => (
   <div>
     <div>Error</div>
     <span>{data.error.message}</span>
-  </div>  
+  </div>
 );
 
 const displayLoadingState = branch(
-  (props) => props.data.loading,
-  renderComponent(Loading),
+  props => props.data.loading,
+  renderComponent(Loading)
 );
 
-const handleError = branch(
-  (props) => props.data.error,
-  renderComponent(Error)
-);
+const handleError = branch(props => props.data.error, renderComponent(Error));
 
 const data = graphql(gql`
   query AllLinksQuery {
@@ -43,7 +38,8 @@ const data = graphql(gql`
       url
       description
     }
-  }`);
+  }
+`);
 
 const enhance = compose(
   data,

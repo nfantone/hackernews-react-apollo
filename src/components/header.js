@@ -5,21 +5,21 @@ import { compose, pure } from 'recompose';
 
 const Header = () => {
   return (
-    <div className='flex pa1 justify-between nowrap orange'>
-      <div className='flex flex-fixed black'>
-        <div className='fw7 mr1'>Hacker News</div>
-        <Link to='/' className='ml1 no-underline black'>new</Link>
-        <div className='ml1'>|</div>
-        <Link to='/create' className='ml1 no-underline black'>submit</Link>
+    <div className="flex pa1 justify-between nowrap orange">
+      <div className="flex flex-fixed black">
+        <div className="fw7 mr1">Hacker News</div>
+        <Link to="/" className="ml1 no-underline black">
+          new
+        </Link>
+        <div className="ml1">|</div>
+        <Link to="/create" className="ml1 no-underline black">
+          submit
+        </Link>
       </div>
     </div>
   );
 };
 
+const enhance = compose(withRouter, pure);
 
-const enhance = compose(
-  withRouter,
-  pure
-);
-
-export default enhance(Header)
+export default enhance(Header);
