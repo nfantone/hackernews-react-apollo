@@ -1,10 +1,10 @@
 import React from 'react';
-import { pure, compose, mapProps, defaultProps } from 'recompose';
-import Link from './link';
+import { compose, mapProps, defaultProps, onlyUpdateForKeys } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { displayLoading } from './loading';
-import { displayError } from './error';
+import Link from '../core/link';
+import { displayLoading } from '../core/loading';
+import { displayError } from '../core/error';
 
 const SearchResults = ({ links }) => (
   <div>
@@ -55,7 +55,7 @@ const enhance = compose(
   mapProps(({ data: { allLinks } }) => {
     return { links: allLinks || [] };
   }),
-  pure
+  onlyUpdateForKeys(['filter'])
 );
 
 export default enhance(SearchResults);

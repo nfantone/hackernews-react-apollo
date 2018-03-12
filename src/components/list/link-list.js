@@ -1,10 +1,10 @@
 import React from 'react';
-import Link from './link';
 import { compose, pure, mapProps, withHandlers } from 'recompose';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { displayLoading } from './loading';
-import { displayError } from './error';
+import Link from '../core/link';
+import { displayLoading } from '../core/loading';
+import { displayError } from '../core/error';
 
 const LinkList = ({ links, onAfterVote }) => {
   return (

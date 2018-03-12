@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import { compose, pure, withHandlers, withState } from 'recompose';
 import gql from 'graphql-tag';
-import { ALL_LINKS_QUERY } from './link-list';
+import { ALL_LINKS_QUERY } from '../list/link-list';
 
 const CreateLinkForm = ({
   createLink,
