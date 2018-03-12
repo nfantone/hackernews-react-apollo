@@ -1,15 +1,10 @@
 import React from 'react';
 import Link from './link';
-import {
-  compose,
-  pure,
-  branch,
-  renderComponent,
-  mapProps,
-  withHandlers
-} from 'recompose';
+import { compose, pure, mapProps, withHandlers } from 'recompose';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { displayLoading } from './loading';
+import { displayError } from './error';
 
 const LinkList = ({ links, onAfterVote }) => {
   return (
@@ -20,22 +15,6 @@ const LinkList = ({ links, onAfterVote }) => {
     </div>
   );
 };
-
-const Loading = () => <div>Loading...</div>;
-
-const Error = ({ data }) => (
-  <div>
-    <div>Error</div>
-    <span>{data.error.message}</span>
-  </div>
-);
-
-const displayLoadingState = branch(
-  props => props.data.loading,
-  renderComponent(Loading)
-);
-
-const handleError = branch(props => props.data.error, renderComponent(Error));
 
 export const ALL_LINKS_QUERY = gql`
   query AllLinksQuery {
@@ -62,8 +41,8 @@ const byLinkId = id => link => link.id === id;
 
 const enhance = compose(
   graphql(ALL_LINKS_QUERY),
-  displayLoadingState,
-  handleError,
+  displayLoading,
+  displayError,
   mapProps(({ data }) => {
     return { links: data.allLinks };
   }),
