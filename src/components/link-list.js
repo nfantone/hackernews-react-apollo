@@ -1,14 +1,21 @@
 import React from 'react';
 import Link from './link';
-import { compose, pure, branch, renderComponent, mapProps } from 'recompose';
+import {
+  compose,
+  pure,
+  branch,
+  renderComponent,
+  mapProps,
+  withHandlers
+} from 'recompose';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const LinkList = ({ links }) => {
+const LinkList = ({ links, onAfterVote }) => {
   return (
     <div>
-      {links.map(link => (
-        <Link key={link.id} description={link.description} url={link.url} />
+      {links.map((link, index) => (
+        <Link key={link.id} index={index} onAfterVote={onAfterVote} {...link} />
       ))}
     </div>
   );
@@ -30,23 +37,43 @@ const displayLoadingState = branch(
 
 const handleError = branch(props => props.data.error, renderComponent(Error));
 
-const data = graphql(gql`
+export const ALL_LINKS_QUERY = gql`
   query AllLinksQuery {
     allLinks {
       id
       createdAt
       url
       description
+      postedBy {
+        id
+        name
+      }
+      votes {
+        id
+        user {
+          id
+        }
+      }
     }
   }
-`);
+`;
+
+const byLinkId = id => link => link.id === id;
 
 const enhance = compose(
-  data,
+  graphql(ALL_LINKS_QUERY),
   displayLoadingState,
   handleError,
   mapProps(({ data }) => {
     return { links: data.allLinks };
+  }),
+  withHandlers({
+    onAfterVote: () => (store, { linkId, vote }) => {
+      const data = store.readQuery({ query: ALL_LINKS_QUERY });
+      const votedLink = data.allLinks.find(byLinkId(linkId));
+      votedLink.votes = vote.link.votes;
+      store.writeQuery({ query: ALL_LINKS_QUERY, data });
+    }
   }),
   pure
 );
