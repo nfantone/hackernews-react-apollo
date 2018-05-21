@@ -26,7 +26,7 @@
     "react-apollo": "^2.1.0-rc.3",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "recompose": "^0.26.0",
+    "recompose": "^0.27.0",
     "tachyons": "^4.9.1",
     "timeago.js": "^3.0.2"
   },
