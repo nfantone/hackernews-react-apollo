@@ -31,7 +31,7 @@
     "timeago.js": "^3.0.2"
   },
   "devDependencies": {
-    "eslint": "4.19.0",
+    "eslint": "5.15.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
     "prettier": "^1.11.1",
