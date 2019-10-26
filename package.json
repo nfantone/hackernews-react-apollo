@@ -28,7 +28,7 @@
     "react-router-dom": "^4.2.2",
     "recompose": "^0.27.0",
     "tachyons": "^4.9.1",
-    "timeago.js": "^3.0.2"
+    "timeago.js": "^4.0.1"
   },
   "devDependencies": {
     "eslint": "4.19.0",
